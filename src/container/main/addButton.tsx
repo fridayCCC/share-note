@@ -10,13 +10,14 @@ const TodoAdd = ({ addTodo }: TodoAddProps) => {
   const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setContent(e.target.value);
   }, []);
-  const onSubmit = useCallback((e: FormEvent) => {
-    e.preventDefault();
-    setContent((prev) => {
-      addTodo(prev);
-      return "";
-    });
-  }, []);
+  const onSubmit = useCallback(
+    (e: FormEvent) => {
+      e.preventDefault();
+      addTodo(content);
+      setContent("");
+    },
+    [content]
+  );
 
   return (
     <form onSubmit={onSubmit} style={kInputFormWrap}>
